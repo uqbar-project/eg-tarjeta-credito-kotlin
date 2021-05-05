@@ -9,11 +9,10 @@ class ClienteMixtoSpec: DescribeSpec({
     val montoMaximoSafeShopCliente = 80
 
     describe("Dado un cliente que tiene tanto safe shop como promoción como condiciones comerciales") {
-        val cliente = ClientePosta(50).apply {
-            adheridoSafeShop = true
-            montoMaximoSafeShop = montoMaximoSafeShopCliente
-            adheridoPromocion = true
-        }
+        val cliente = ClienteBuilder(ClientePosta(50))
+            .promocion()
+            .safeShop(montoMaximoSafeShopCliente)
+            .build()
         it("Al comprar por arriba del límite de promoción y por debajo del safe shop, acumula puntos y la compra funciona ok") {
             cliente.comprar(60)
             cliente.saldo shouldBe 110

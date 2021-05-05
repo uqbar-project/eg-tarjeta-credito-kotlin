@@ -9,10 +9,9 @@ class ClienteSafeShopSpec: DescribeSpec({
     val montoMaximoSafeShopCliente = 30
 
     describe("Dado un cliente que tiene únicamente safe shop como condición comercial") {
-        val cliente = ClientePosta(50).apply {
-            adheridoSafeShop = true
-            montoMaximoSafeShop = montoMaximoSafeShopCliente
-        }
+        val cliente = ClienteBuilder(ClientePosta(50))
+            .safeShop(montoMaximoSafeShopCliente)
+            .build()
         it("no debe poder comprar por más del valor permitido ni debe aumentar el saldo") {
             shouldThrow<BusinessException> { -> cliente.comprar(montoMaximoSafeShopCliente + 1) }
             cliente.saldo shouldBe 50

@@ -8,9 +8,9 @@ class ClientePromocionSpec: DescribeSpec({
     isolationMode = IsolationMode.InstancePerTest
 
     describe("Dado un cliente que tiene únicamente promoción como condición comercial") {
-        val cliente = ClientePosta(40).apply {
-            adheridoPromocion = true
-        }
+        val cliente = ClienteBuilder(ClientePosta(40))
+            .promocion()
+            .build()
         it("al comprar por debajo del límite necesario para acumular puntos, no acumula puntos de promoción") {
             cliente.comprar(50)
             cliente.puntosPromocion shouldBe 0

@@ -6,7 +6,8 @@ class ClienteSpec: DescribeSpec({
     isolationMode = IsolationMode.InstancePerTest
 
     describe("Dado un cliente sin condiciones comerciales") {
-        val cliente = ClientePosta(50)
+        val cliente = ClienteBuilder(ClientePosta(50))
+            .build()
         it("al pagar el vencimiento deja de ser moroso") {
             cliente.esMoroso() shouldBe true
             cliente.pagarVencimiento(50)

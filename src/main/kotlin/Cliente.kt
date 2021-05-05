@@ -1,13 +1,16 @@
 import BusinessException.BusinessException
 
 interface Cliente {
+    var saldo: Int
+    var puntosPromocion: Int
     fun comprar(monto: Int)
     fun pagarVencimiento(monto: Int)
+    fun esMoroso() = this.saldo > 0
 }
 
-class ClientePosta(var saldo: Int = 0) : Cliente {
+class ClientePosta(override var saldo: Int = 0) : Cliente {
     var montoMaximoSafeShop = 50
-    var puntosPromocion = 0
+    override var puntosPromocion = 0
     var adheridoPromocion = false
     var adheridoSafeShop = false
 
@@ -29,6 +32,25 @@ class ClientePosta(var saldo: Int = 0) : Cliente {
     override fun pagarVencimiento(monto: Int) {
         saldo = saldo - monto
     }
+}
 
-    fun esMoroso() = this.saldo > 0
+class ClienteBuilder(val cliente: ClientePosta) {
+
+    fun safeShop(montoMaximo: Int): ClienteBuilder {
+        cliente.adheridoSafeShop = true
+        cliente.montoMaximoSafeShop = montoMaximo
+        return this
+    }
+
+    fun promocion(): ClienteBuilder {
+        cliente.adheridoPromocion = true
+        return this
+    }
+
+    fun build(): Cliente {
+        if (cliente.saldo <= 0) {
+            throw BusinessException("El saldo debe ser positivo")
+        }
+        return cliente
+    }
 }
