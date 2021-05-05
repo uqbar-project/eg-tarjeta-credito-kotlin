@@ -1,7 +1,7 @@
 
 # Clientes de una tarjeta de crédito
 
-![credit card](./images/creditCard.png)
+![credit card](./images/creditCardSmall.png)
 
 [![build](https://github.com/uqbar-project/eg-tarjeta-credito-kotlin/actions/workflows/build.yml/badge.svg)](https://github.com/uqbar-project/eg-tarjeta-credito-kotlin/actions/workflows/build.yml) [![coverage](https://codecov.io/gh/uqbar-project/eg-tarjeta-credito-kotlin/branch/master/graph/badge.svg)](https://codecov.io/gh/uqbar-project/eg-tarjeta-credito-kotlin/branch/master/graph/badge.svg)
 
