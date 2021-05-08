@@ -28,35 +28,17 @@ class ClientePosta(var saldo: Int = 0) : Cliente {
     override fun puntosPromocion() = puntosPromocion
 }
 
-abstract class ClienteConCondicionComercial(val cliente: Cliente) : Cliente {
-    override fun pagarVencimiento(monto: Int) {
-        cliente.pagarVencimiento(monto)
-    }
-    override fun sumarPuntos(puntos: Int) =  cliente.sumarPuntos(puntos)
-    override fun saldo() = cliente.saldo()
-    override fun puntosPromocion() = cliente.puntosPromocion()
-}
-
-class SafeShop(val montoMaximo: Int, cliente: Cliente) : ClienteConCondicionComercial(cliente) {
+class SafeShop(val maximo: Int, val cliente : Cliente) : Cliente by cliente {
     override fun comprar(monto: Int) {
-        if (monto > montoMaximo) {
-            throw BusinessException("Debe comprar por menos de " + montoMaximo)
-        }
+        if (monto > maximo) throw BusinessException("No puede comprar por más de " + monto)
         cliente.comprar(monto)
     }
 }
 
-class Promocion(cliente: Cliente) : ClienteConCondicionComercial(cliente) {
-    companion object {
-        var montoMinimoPromocion = 50
-        var PUNTAJE_PROMOCION = 15
-    }
-
+class Promocion(val cliente : Cliente) : Cliente by cliente {
     override fun comprar(monto: Int) {
         cliente.comprar(monto)
-        if (monto > montoMinimoPromocion) {
-            cliente.sumarPuntos(PUNTAJE_PROMOCION)
-        }
+        if (monto > 50) cliente.sumarPuntos(15)
     }
 }
 
