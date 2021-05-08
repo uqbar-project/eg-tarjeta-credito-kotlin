@@ -3,7 +3,7 @@
 
 ![credit card](./images/creditCardSmall.png)
 
-[![build](https://github.com/uqbar-project/eg-tarjeta-credito-kotlin/actions/workflows/build.yml/badge.svg?branch=02-strategies)](https://github.com/uqbar-project/eg-tarjeta-credito-kotlin/actions/workflows/build.yml) [![coverage](https://codecov.io/gh/uqbar-project/eg-tarjeta-credito-kotlin/branch/02-strategies/graph/badge.svg)](https://codecov.io/gh/uqbar-project/eg-tarjeta-credito-kotlin/branch/02-strategies/graph/badge.svg)
+[![build](https://github.com/uqbar-project/eg-tarjeta-credito-kotlin/actions/workflows/build.yml/badge.svg)](https://github.com/uqbar-project/eg-tarjeta-credito-kotlin/actions/workflows/build.yml) [![codecov](https://codecov.io/gh/uqbar-project/eg-tarjeta-credito-kotlin/branch/master/graph/badge.svg?token=7fKK9riTkh)](https://codecov.io/gh/uqbar-project/eg-tarjeta-credito-kotlin)
 
 ## Apunte original
 
