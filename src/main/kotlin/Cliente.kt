@@ -5,45 +5,71 @@ interface Cliente {
     var puntosPromocion: Int
     fun comprar(monto: Int)
     fun pagarVencimiento(monto: Int)
+    fun sumarPuntos(puntos: Int)
     fun esMoroso() = this.saldo > 0
 }
 
 class ClientePosta(override var saldo: Int = 0) : Cliente {
-    var montoMaximoSafeShop = 50
     override var puntosPromocion = 0
-    var adheridoPromocion = false
-    var adheridoSafeShop = false
-
-    companion object {
-        var montoMinimoPromocion = 50
-        var PUNTAJE_PROMOCION = 15
-    }
+    val condicionesComerciales = mutableListOf<CondicionComercial>()
 
     override fun comprar(monto: Int) {
-        if (adheridoSafeShop && monto > montoMaximoSafeShop) {
-            throw BusinessException("Debe comprar por menos de " + montoMaximoSafeShop)
-        }
+        condicionesComerciales
+            .sortedBy { it.order() }
+            .forEach { condicionComercial ->  condicionComercial.comprar(monto, this) }
         saldo = saldo + monto
-        if (adheridoPromocion && monto > montoMinimoPromocion) {
-            puntosPromocion = puntosPromocion + PUNTAJE_PROMOCION
-        }
     }
 
     override fun pagarVencimiento(monto: Int) {
         saldo = saldo - monto
     }
+
+    override fun sumarPuntos(puntos: Int) {
+        puntosPromocion = puntosPromocion + puntos
+    }
+
+    fun agregarCondicionComercial(condicionComercial: CondicionComercial) {
+        condicionesComerciales.add(condicionComercial)
+    }
+}
+
+interface CondicionComercial {
+    fun comprar(monto: Int, cliente: Cliente)
+    fun order(): Int
+}
+
+class SafeShop(val montoMaximo: Int) : CondicionComercial {
+    override fun comprar(monto: Int, cliente: Cliente) {
+        if (monto > montoMaximo) {
+            throw BusinessException("Debe comprar por menos de " + montoMaximo)
+        }
+    }
+    override fun order() = 1
+}
+
+class Promocion : CondicionComercial {
+    companion object {
+        var montoMinimoPromocion = 50
+        var PUNTAJE_PROMOCION = 15
+    }
+
+    override fun comprar(monto: Int, cliente: Cliente) {
+        if (monto > montoMinimoPromocion) {
+            cliente.sumarPuntos(PUNTAJE_PROMOCION)
+        }
+    }
+    override fun order() = 2
 }
 
 class ClienteBuilder(val cliente: ClientePosta) {
 
     fun safeShop(montoMaximo: Int): ClienteBuilder {
-        cliente.adheridoSafeShop = true
-        cliente.montoMaximoSafeShop = montoMaximo
+        cliente.agregarCondicionComercial(SafeShop(montoMaximo))
         return this
     }
 
     fun promocion(): ClienteBuilder {
-        cliente.adheridoPromocion = true
+        cliente.agregarCondicionComercial(Promocion())
         return this
     }
 
