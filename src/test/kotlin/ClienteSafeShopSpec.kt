@@ -14,11 +14,11 @@ class ClienteSafeShopSpec: DescribeSpec({
             .build()
         it("no debe poder comprar por más del valor permitido ni debe aumentar el saldo") {
             shouldThrow<BusinessException> { -> cliente.comprar(montoMaximoSafeShopCliente + 1) }
-            cliente.saldo shouldBe 50
+            cliente.saldo() shouldBe 50
         }
         it("debe poder comprar hasta el valor límite") {
             cliente.comprar(montoMaximoSafeShopCliente)
-            cliente.saldo shouldBe 50 + montoMaximoSafeShopCliente
+            cliente.saldo() shouldBe 50 + montoMaximoSafeShopCliente
         }
     }
 })

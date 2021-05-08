@@ -13,11 +13,11 @@ class ClientePromocionSpec: DescribeSpec({
             .build()
         it("al comprar por debajo del límite necesario para acumular puntos, no acumula puntos de promoción") {
             cliente.comprar(50)
-            cliente.puntosPromocion shouldBe 0
+            cliente.puntosPromocion() shouldBe 0
         }
         it("al comprar por arriba del monto necesario para acumular puntos, acumula puntos de promoción") {
             cliente.comprar(60)
-            cliente.puntosPromocion shouldBe 15
+            cliente.puntosPromocion() shouldBe 15
         }
     }
 })

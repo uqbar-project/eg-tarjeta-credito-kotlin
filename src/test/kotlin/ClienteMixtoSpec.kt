@@ -15,13 +15,13 @@ class ClienteMixtoSpec: DescribeSpec({
             .build()
         it("Al comprar por arriba del límite de promoción y por debajo del safe shop, acumula puntos y la compra funciona ok") {
             cliente.comprar(60)
-            cliente.saldo shouldBe 110
-            cliente.puntosPromocion shouldBe 15
+            cliente.saldo() shouldBe 110
+            cliente.puntosPromocion() shouldBe 15
         }
         it("Al comprar por arriba del límite de safe shop, la compra se cancela y no acumula puntos") {
             shouldThrow<BusinessException> { -> cliente.comprar(montoMaximoSafeShopCliente + 1) }
-            cliente.saldo shouldBe 50
-            cliente.puntosPromocion shouldBe 0
+            cliente.saldo() shouldBe 50
+            cliente.puntosPromocion() shouldBe 0
         }
     }
 })
