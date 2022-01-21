@@ -1,4 +1,4 @@
-import BusinessException.BusinessException
+package ar.edu.unsam.algo2.tarjetaCredito
 
 interface Cliente {
     fun comprar(monto: Int)
