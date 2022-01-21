@@ -1,4 +1,5 @@
-import BusinessException.BusinessException
+package ar.edu.unsam.algo2.tarjetaCredito
+
 import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.core.spec.IsolationMode
 import io.kotest.core.spec.style.DescribeSpec
