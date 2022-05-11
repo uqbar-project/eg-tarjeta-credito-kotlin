@@ -21,7 +21,7 @@ class ClienteSpec: DescribeSpec({
         }
         it("al comprar sube el saldo") {
             cliente.comprar(50)
-            cliente.saldo shouldBe 100
+            cliente.saldo() shouldBe 100
         }
     }
 })

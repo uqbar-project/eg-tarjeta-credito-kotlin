@@ -1,16 +1,16 @@
 package ar.edu.unsam.algo2.tarjetaCredito
 
 interface Cliente {
-    var saldo: Int
-    var puntosPromocion: Int
+    fun saldo(): Int
+    fun puntosPromocion(): Int
     fun comprar(monto: Int)
     fun pagarVencimiento(monto: Int)
     fun sumarPuntos(puntos: Int)
-    fun esMoroso() = this.saldo > 0
+    fun esMoroso() = this.saldo() > 0
 }
 
-class ClientePosta(override var saldo: Int = 0) : Cliente {
-    override var puntosPromocion = 0
+class ClientePosta(var saldo: Int = 0) : Cliente {
+    var puntosPromocion = 0
     val condicionesComerciales = mutableListOf<CondicionComercial>()
 
     override fun comprar(monto: Int) {
@@ -31,6 +31,9 @@ class ClientePosta(override var saldo: Int = 0) : Cliente {
     fun agregarCondicionComercial(condicionComercial: CondicionComercial) {
         condicionesComerciales.add(condicionComercial)
     }
+
+    override fun saldo() = saldo
+    override fun puntosPromocion() = puntosPromocion
 }
 
 interface CondicionComercial {
