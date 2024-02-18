@@ -30,6 +30,8 @@ La interfaz ya no define atributos `saldo` ni `puntosPromocion`, lo transformamo
 
 ```kt
 class ClientePosta(var saldo: Int = 0) : Cliente {
+    var puntosPromocion = 0
+
     override fun saldo() = saldo
     override fun puntosPromocion() = puntosPromocion
 ```
