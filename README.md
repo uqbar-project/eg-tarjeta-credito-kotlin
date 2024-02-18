@@ -127,6 +127,6 @@ describe("Dado un cliente que tiene tanto safe shop como promoción como condici
     it("Al comprar por arriba del límite de promoción y por debajo del safe shop, acumula puntos y la compra funciona ok") {
         cliente.comprar(60)
         cliente.saldo() shouldBe 110
-        cliente.puntosPromocion() shouldBe 15
+        cliente.puntosPromocion() shouldBe 15   
     }
 ```
