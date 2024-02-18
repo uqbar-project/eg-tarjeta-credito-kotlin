@@ -15,7 +15,7 @@ Cada condición comercial se representa como una estrategia dentro de la compra.
 
 ```kt
 class ClientePosta(override var saldo: Int = 0) : Cliente {
-    override var puntosPromocion = 0
+    var puntosPromocion = 0
     val condicionesComerciales = mutableListOf<CondicionComercial>()
 ```
 
