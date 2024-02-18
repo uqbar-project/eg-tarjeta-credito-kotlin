@@ -24,7 +24,7 @@ abstract class ClienteConCondicionComercial(val cliente: Cliente) : Cliente {
 }
 ```
 
-Kotlin trae el concepto [**delegation**](https://kotlinlang.org/docs/delegation.html), que permite envolver (_wrappear_ o decorar) un objeto y modificarle comportamiento, de la siguiente manera:
+Kotlin trae el concepto de [**delegation**](https://kotlinlang.org/docs/delegation.html), que permite envolver (_wrappear_ o decorar) un objeto y modificarle comportamiento, de la siguiente manera:
 
 ```kt
 class SafeShop(val maximo: Int, val cliente : Cliente) : Cliente by cliente {
