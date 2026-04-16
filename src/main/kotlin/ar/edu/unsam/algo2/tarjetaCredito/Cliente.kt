@@ -30,7 +30,7 @@ class ClientePosta(var saldo: Int = 0) : Cliente {
 
 class SafeShop(val maximo: Int, val cliente : Cliente) : Cliente by cliente {
     override fun comprar(monto: Int) {
-        if (monto > maximo) throw BusinessException("No puede comprar por más de " + monto)
+        if (monto > maximo) throw BusinessException("No puede comprar por más de $monto")
         cliente.comprar(monto)
     }
 }
