@@ -40,7 +40,7 @@ abstract class ClienteConCondicionComercial(val cliente: Cliente) : Cliente {
 class SafeShop(val montoMaximo: Int, cliente: Cliente) : ClienteConCondicionComercial(cliente) {
     override fun comprar(monto: Int) {
         if (monto > montoMaximo) {
-            throw BusinessException("Debe comprar por menos de " + montoMaximo)
+            throw BusinessException("Debe comprar por menos de $montoMaximo")
         }
         cliente.comprar(monto)
     }
