@@ -1,16 +1,17 @@
 package ar.edu.unsam.algo2.tarjetaCredito
 
 interface Cliente {
-    var saldo: Int
-    var puntosPromocion: Int
     fun comprar(monto: Int)
     fun pagarVencimiento(monto: Int)
-    fun esMoroso() = this.saldo > 0
+    fun sumarPuntos(puntos: Int)
+    fun saldo(): Int
+    fun puntosPromocion(): Int
+    fun esMoroso() = this.saldo() > 0
 }
 
-class ClientePosta(override var saldo: Int = 0) : Cliente {
+class ClientePosta(var saldo: Int = 0) : Cliente {
     var montoMaximoSafeShop = 50
-    override var puntosPromocion = 0
+    var puntosPromocion = 0
     var adheridoPromocion = false
     var adheridoSafeShop = false
 
@@ -18,6 +19,14 @@ class ClientePosta(override var saldo: Int = 0) : Cliente {
         var montoMinimoPromocion = 50
         var PUNTAJE_PROMOCION = 15
     }
+
+    override fun sumarPuntos(puntos: Int) {
+        this.puntosPromocion = this.puntosPromocion + puntos
+    }
+
+    override fun saldo() = saldo
+
+    override fun puntosPromocion() = puntosPromocion
 
     override fun comprar(monto: Int) {
         if (adheridoSafeShop && monto > montoMaximoSafeShop) {

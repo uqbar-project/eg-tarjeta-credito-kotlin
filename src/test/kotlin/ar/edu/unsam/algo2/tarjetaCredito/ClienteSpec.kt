@@ -12,7 +12,7 @@ class ClienteSpec: DescribeSpec({
         val cliente = ClienteBuilder(ClientePosta(50))
             .build()
         it("no es posible generar un cliente sin saldo") {
-            shouldThrow<BusinessException> { -> ClienteBuilder(ClientePosta(0)).build() }
+            shouldThrow<BusinessException> { ClienteBuilder(ClientePosta(0)).build() }
         }
         it("al pagar el vencimiento deja de ser moroso") {
             cliente.esMoroso() shouldBe true
@@ -21,7 +21,7 @@ class ClienteSpec: DescribeSpec({
         }
         it("al comprar sube el saldo") {
             cliente.comprar(50)
-            cliente.saldo shouldBe 100
+            cliente.saldo() shouldBe 100
         }
     }
 })
