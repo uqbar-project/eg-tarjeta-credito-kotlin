@@ -1,11 +1,11 @@
 package ar.edu.unsam.algo2.tarjetaCredito
 
 interface Cliente {
-    fun saldo(): Int
-    fun puntosPromocion(): Int
     fun comprar(monto: Int)
     fun pagarVencimiento(monto: Int)
     fun sumarPuntos(puntos: Int)
+    fun saldo(): Int
+    fun puntosPromocion(): Int
     fun esMoroso() = this.saldo() > 0
 }
 
