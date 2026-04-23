@@ -64,4 +64,4 @@ El Builder, el cliente posta y los tests no es necesario modificarlos, la soluci
 ### Variantes similares en otros lenguajes
 
 - [Property & Method missing in Groovy](https://www.baeldung.com/groovy-metaprogramming)
-- [Method missing in Ruby](https://medium.com/podiihq/method-missing-in-ruby-af4c6edd5130)
+- [Method missing in Ruby](https://medium.com/@imrohitkushwaha2001/unleashing-the-power-of-method-missing-in-ruby-the-hidden-gem-for-dynamic-method-handling-a8841aa77e49)
